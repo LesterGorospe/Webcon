@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confianza Construction Design & Build</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f4f4; color: #333; line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Navbar */
+        nav { 
+            background: transparent; 
+            color: #fff; 
+            padding: 1.5rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: absolute; 
+            top: 0; 
+            left: 0;
+            width: 100%;
+            z-index: 1000; 
+        }
+        nav .logo { font-size: 1.5rem; font-weight: bold; color: #e67e22; text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: #fff; text-decoration: none; font-weight: bold; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+
+        /* HERO SLIDESHOW SECTION */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            transition: background-image 1s ease-in-out;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+
+        .slide-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 2.2rem;
+            padding: 12px 18px;
+            cursor: pointer;
+            z-index: 3;
+            transition: background 0.3s;
+            border-radius: 4px;
+        }
+        .slide-arrow:hover { background: rgba(0, 0, 0, 0.8); }
+        .prev-arrow { left: 30px; }
+        .next-arrow { right: 30px; }
+        .slide-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+        .dot {
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active, .dot:hover { background: #e67e22; }
+
+        /* FEATURED PHOTOS SECTION */
+        .featured-photos-section {
+            background: #ffffff;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .featured-title {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 50px;
+            color: #111;
+            letter-spacing: 1px;
+        }
+        .featured-showcase-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        .featured-project-box {
+            position: relative;
+            background: #fff;
+            padding-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .featured-grid-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 15px;
+        }
+        .featured-main-img {
+            height: 320px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px;
+        }
+        .featured-sub-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            padding: 0 15px 15px 15px;
+        }
+        .featured-sub-img {
+            height: 130px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 2px;
+        }
+        .featured-info-card {
+            background: #ffffff;
+            width: 75%;
+            max-width: 450px;
+            margin: -40px auto 0 auto;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            border: 1px solid #eaeaea;
+            text-align: left;
+        }
+        .featured-info-card h3 {
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 5px;
+        }
+
+        .container { padding: 80px 5%; }
+        .services { display: flex; gap: 20px; flex-wrap: wrap; }
+        .service-card { background: #fff; padding: 20px; flex: 1; min-width: 250px; border-radius: 8px; border-top: 5px solid #e67e22; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+        .service-card.clickable { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+        .service-card.clickable:hover { transform: translateY(-4px); box-shadow: 0 6px 15px rgba(230,126,34,0.25); }
+
+        /* PROJECTS SECTION */
+        .projects-section-wrapper { background: #ffffff; padding: 80px 5%; }
+        .projects-header-title { text-align: center; font-size: 2.8rem; font-weight: 400; margin-bottom: 40px; color: #111; letter-spacing: 1px; }
+        .filter-section { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+        .filter-btn { background: transparent; border: 1px solid #222; padding: 12px 28px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; }
+        .filter-btn:hover, .filter-btn.active { background: #222; color: #fff; }
+        .project-category-info { text-align: center; max-width: 850px; margin: 0 auto 50px auto; }
+        .project-category-info h2 { font-size: 2.2rem; font-weight: 400; margin-bottom: 15px; color: #222; }
+        .project-category-info p { color: #666; font-size: 1rem; line-height: 1.7; }
+        
+        .project-grid-enhanced { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .project-card-item { background: #fff; border-radius: 6px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.3s ease; text-align: left; cursor: pointer; }
+        .project-card-item:hover { transform: translateY(-6px); box-shadow: 0 8px 25px rgba(230,126,34,0.2); }
+        .project-image-box { height: 230px; background-size: cover; background-position: center; background-color: #e0e0e0; }
+        .project-details { padding: 20px; }
+        .project-details h3 { font-size: 1.15rem; color: #222; margin-bottom: 6px; }
+        .project-details p { font-size: 0.85rem; color: #777; }
+
+        /* MODIFIED PROJECT DETAIL VIEW (Gallery layout) */
+        .project-detail-view {
+            display: none;
+            position: fixed;
+            z-index: 2500;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+        .project-detail-content-box {
+            background-color: #fff;
+            margin: auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .project-detail-header-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .project-detail-header-area h2 { font-size: 1.8rem; color: #2c3e50; }
+        .close-detail-view {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .close-detail-view:hover { color: #000; }
+
+        .modal-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .modal-gallery-item {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .modal-gallery-item:hover { transform: scale(1.03); }
+
+        /* MODALS & LIGHTBOX */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 4000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 40px 20px;
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 900px;
+            border-radius: 8px;
+            position: relative;
+        }
+        .close-modal {
+            color: #aaa;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .close-modal:hover { color: #000; }
+        .modal-header-title { font-size: 1.8rem; margin-bottom: 20px; color: #2c3e50; }
+
+        .design-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        .design-service-box {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-top: 4px solid #e67e22;
+            padding: 25px 20px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .design-service-box h4 {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 5000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 4px;
+        }
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-lightbox:hover { color: #e67e22; }
+
+        /* CONTACT SECTION */
+        .contact-section-wrapper {
+            position: relative;
+            background: #ffffff;
+            padding: 80px 5% 40px 5%;
+            color: #222;
+        }
+        .contact-inner-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .contact-col h3, .contact-col h4 {
+            color: #e67e22;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .contact-col p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .contact-details-list { list-style: none; margin-top: 20px; }
+        .contact-details-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 15px; font-size: 0.9rem; color: #444; }
+        .contact-details-list span.icon { font-size: 1.1rem; color: #e67e22; }
+        .copy-btn { background: #222; color: #fff; border: none; padding: 2px 8px; font-size: 0.75rem; border-radius: 3px; cursor: pointer; margin-left: 5px; }
+        .copy-btn:hover { background: #e67e22; }
+        .business-hours-box p { margin-bottom: 10px; font-size: 0.95rem; color: #444; }
+        .business-hours-box .closed-day { color: #e74c3c; font-weight: bold; }
+        .inquiry-form-container { background: #f9f9f9; padding: 25px; border-radius: 6px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eaeaea; }
+        .inquiry-form-container h4 { color: #222; font-size: 1.1rem; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+        .inquiry-form input, .inquiry-form textarea { width: 100%; padding: 12px; margin-bottom: 12px; background: #fff; border: 1px solid #ddd; border-radius: 4px; color: #333; font-size: 0.9rem; }
+        .inquiry-submit-btn { width: 100%; background: #222; color: #fff; border: none; padding: 12px; font-weight: bold; border-radius: 4px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: background 0.3s; }
+        .inquiry-submit-btn:hover { background: #e67e22; }
+        .map-preview-container { margin-top: 20px; border-radius: 4px; overflow: hidden; border: 1px solid #ddd; background: #fff; height: 180px; position: relative; }
+        .map-preview-container iframe { width: 100%; height: 100%; border: 0; }
+        .footer-bottom { position: relative; z-index: 2; text-align: center; padding-top: 40px; font-size: 0.85rem; color: #666; border-top: 1px solid #eaeaea; margin-top: 40px; }
+
+        @media(max-width: 992px) {
+            .contact-inner-container { grid-template-columns: 1fr; gap: 30px; }
+        }
+        @media(max-width: 768px) {
+            .featured-grid-images { grid-template-columns: 1fr; }
+            .featured-sub-grid { grid-template-columns: 1fr; }
+            .featured-info-card { width: 90%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Transparent Navigation Bar -->
+<nav>
+    <div class="logo">CONFIANZA CONSTRUCTION DESIGN & BUILD</div>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Full Screen Slideshow Section -->
+<header class="hero" id="home" style="background-image: url('NAMNAMA_3.jpg');">
+    <button class="slide-arrow prev-arrow" onclick="changeSlide(-1)">&#10094;</button>
+    <div class="hero-content">
+        <h1 id="hero-title">Namnama Residence</h1>
+        <p id="hero-desc">Modern 2-Storey Contemporary Design with Elegant Balcony.</p>
+    </div>
+    <button class="slide-arrow next-arrow" onclick="changeSlide(1)">&#10095;</button>
+    <div class="slide-dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</header>
+
+<!-- FEATURED PHOTOS SECTION -->
+<section class="featured-photos-section">
+    <h2 class="featured-title">Featured Projects.</h2>
+    <div class="featured-showcase-container">
+        <div class="featured-project-box">
+            <div class="featured-grid-images">
+                <div class="featured-main-img" style="background-image: url('2.png');"></div>
+                <div class="featured-main-img" style="background-image: url('9.png');"></div>
+            </div>
+            <div class="featured-info-card"><h3>T RESIDENCE</h3></div>
+            <div class="featured-sub-grid" style="margin-top: 20px;">
+                <div class="featured-sub-img" style="background-image: url('5.png');"></div>
+                <div class="featured-sub-img" style="background-image: url('2.png');"></div>
+                <div class="featured-sub-img" style="background-image: url('3.png');"></div>
+            </div>
+        </div>
+        <div class="featured-project-box" style="margin-top: 40px;">
+            <div style="padding: 15px 15px 0 15px;">
+                <div class="featured-main-img" style="height: 380px; background-image: url('SEIJAKU.jpg');"></div>
+            </div>
+            <div class="featured-info-card"><h3>S RESIDENCE</h3></div>
+            <div class="featured-sub-grid" style="margin-top: 20px;">
+                <div class="featured-sub-img" style="background-image: url('SEIJAKU 1.jpg');"></div>
+                <div class="featured-sub-img" style="background-image: url('SEIJAKU 2.jpg');"></div>
+                <div class="featured-sub-img" style="background-image: url('SEIJAKU 3.jpg');"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="container" id="services">
+    <h2 style="text-align: center; margin-bottom: 30px;">Our Services</h2>
+    <div class="services">
+        <div class="service-card clickable" onclick="openModal('designServicesModal')">
+            <h3>Design Services</h3><p></p>
+        </div>
+        <div class="service-card clickable" onclick="openModal('constructionServicesModal')">
+            <h3>Construction Services</h3><p></p>
+        </div>
+        <div class="service-card clickable" onclick="openModal('permitProcessingModal')">
+            <h3>Permit Processing</h3><p></p>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section class="projects-section-wrapper" id="portfolio">
+    <h1 class="projects-header-title">PROJECTS.</h1>
+
+    <div class="filter-section">
+        <button class="filter-btn active" onclick="switchCategory('finished', event)">Finished Project</button>
+        <button class="filter-btn" onclick="switchCategory('proposed', event)">Proposed Project</button>
+        <button class="filter-btn" onclick="switchCategory('interior', event)">Interior Fits Out & Modular</button>
+    </div>
+
+    <div class="project-category-info" id="category-info">
+        <h2>Finished Projects.</h2>
+        <p>Explore our successfully completed construction and design portfolios, built with precision, durability, and top-tier craftsmanship.</p>
+    </div>
+
+    <div class="project-grid-enhanced" id="project-grid">
+        <div class="project-card-item" onclick="openProjectDetail('tResidence')">
+            <div class="project-image-box" style="background-image: url('1.png');"></div>
+            <div class="project-details"><h3>T Residence</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('sResidence')">
+            <div class="project-image-box" style="background-image: url('SEIJAKU.jpg');"></div>
+            <div class="project-details"><h3>S RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('saoang')">
+            <div class="project-image-box" style="background-image: url('SAOANG.jpg');"></div>
+            <div class="project-details"><h3>SAOANG</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('rosario')">
+            <div class="project-image-box" style="background-image: url('ROSARIO.jpg');"></div>
+            <div class="project-details"><h3>ROSARIO RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('rResidence')">
+            <div class="project-image-box" style="background-image: url('R\ RESIDENCE.jpg');"></div>
+            <div class="project-details"><h3>R RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('nResidence')">
+            <div class="project-image-box" style="background-image: url('N\ RESIDENCE.jpg');"></div>
+            <div class="project-details"><h3>N RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('pResidence')">
+            <div class="project-image-box" style="background-image: url('PASONANCA.jpg');"></div>
+            <div class="project-details"><h3>P RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('mResidence')">
+            <div class="project-image-box" style="background-image: url('M\ RESIDENCE.jpg');"></div>
+            <div class="project-details"><h3>M RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('aResidence')">
+            <div class="project-image-box" style="background-image: url('A\ RESIDENCE.jpeg');"></div>
+            <div class="project-details"><h3>A RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('bResidence')">
+             <div class="project-image-box" style="background-image: url('B\ RESIDENCE.jpg');"></div>
+            <div class="project-details"><h3>B RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('dResidence')">
+           <div class="project-image-box" style="background-image: url('D\ RESIDENCE.jpg');"></div>
+            <div class="project-details"><h3>D RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('eResidence')">
+            <div class="project-image-box" style="background-image: url('E\ RESIDENCE.jpg');"></div>
+            <div class="project-details"><h3>E RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('fResidence')">
+            <div class="project-image-box" style="background-image: url('F\ RESIDENCE.jpeg');"></div>
+            <div class="project-details"><h3>F RESIDENCE</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('mResidence2')">
+            <div class="project-image-box" style="background-image: url('MRESIDENCE.jpeg');"></div>
+            <div class="project-details"><h3>M RESIDENCE II</h3><p></p></div>
+        </div>
+        <div class="project-card-item" onclick="openProjectDetail('tastesOfGreens')">
+            <div class="project-image-box" style="background-image: url('TT\ GREEN.jpg');"></div>
+            <div class="project-details"><h3>TASTES OF THE GREENS</h3><p></p></div>
+        </div>
+    </div>
+</section>
+
+<!-- DINAMIKONG MODAL NA DIRETSONG MAGBUBUKAS NG MGA LITRATO (GAYA NG GALLERY) -->
+<div id="dynamicProjectDetailView" class="project-detail-view">
+    <div class="project-detail-content-box">
+        <div class="project-detail-header-area">
+            <h2 id="detailTitle">Project Gallery</h2>
+            <button class="close-detail-view" onclick="closeDynamicDetail()">&times;</button>
+        </div>
+        <div class="modal-gallery-grid" id="detailGridContainer"></div>
+    </div>
+</div>
+
+<!-- MODALS PARA SA MGA SERVICES -->
+<div id="designServicesModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('designServicesModal')">&times;</span>
+        <h2 class="modal-header-title">Design Services</h2>
+        <div class="design-services-grid">
+            <div class="design-service-box"><h4>SCHEMATIC FLOOR PLAN</h4></div>
+            <div class="design-service-box"><h4>3D EXTERIOR</h4></div>
+            <div class="design-service-box"><h4>3D INTERIOR</h4></div>
+            <div class="design-service-box"><h4>BUILDING PLAN</h4></div>
+            <div class="design-service-box"><h4>AS BUILT PLAN</h4></div>
+        </div>
+    </div>
+</div>
+
+<div id="constructionServicesModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('constructionServicesModal')">&times;</span>
+        <h2 class="modal-header-title">Construction Services</h2>
+        <div class="design-services-grid">
+            <div class="design-service-box"><h4>NEW LAY OUT</h4></div>
+            <div class="design-service-box"><h4>FENCE</h4></div>
+            <div class="design-service-box"><h4>RENOVATION</h4></div>
+            <div class="design-service-box"><h4>INTERIOR FIT-OUTS</h4></div>
+            <div class="design-service-box"><h4>MODULAR CABINETS</h4></div>
+            <div class="design-service-box"><h4>AIRCON INSTALLATION</h4></div>
+        </div>
+    </div>
+</div>
+
+<div id="permitProcessingModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('permitProcessingModal')">&times;</span>
+        <h2 class="modal-header-title">Permit Processing</h2>
+        <div class="design-services-grid">
+            <div class="design-service-box"><h4>BUILDING PERMIT</h4></div>
+            <div class="design-service-box"><h4>OCCUPANCY PERMIT</h4></div>
+            <div class="design-service-box"><h4>ELECTRICAL CONNECTION</h4></div>
+            <div class="design-service-box"><h4>WATER CONNECTION</h4></div>
+        </div>
+    </div>
+</div>
+
+<!-- LIGHTBOX MODAL -->
+<div id="lightboxModal" class="lightbox-modal">
+    <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightboxImage" src="" alt="Enlarged View">
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section-wrapper" id="contact">
+    <div class="contact-inner-container">
+        <div class="contact-col">
+            <h3>Confianza Construction</h3>
+            <p>Your reliable design and build partner in engineering dreams into reality. We focus on transparency, luxury aesthetics, and structurally sound construction.</p>
+            <h4 style="margin-top: 30px;">Contact Info</h4>
+            <ul class="contact-details-list">
+                <li><span class="icon">&#128205;</span><div>BLK G LOT 7, 4 Progressive, MOLINO 2, Bacoor, 4102 Cavite</div></li>
+                <li><span class="icon">&#128222;</span><div>+63 9565033763</div></li>
+                <li><span class="icon">&#9993;</span><div>hrconfianzaconstruction@gmail.com <button class="copy-btn" onclick="copyEmail()">COPY</button></div></li>
+            </ul>
+        </div>
+        <div class="contact-col business-hours-box">
+            <h3>Business Hours</h3>
+            <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+            <p>Saturday: 8:00 AM - 4:00 PM</p>
+            <p class="closed-day">Sunday: Closed</p>
+        </div>
+        <div class="contact-col">
+            <div class="inquiry-form-container">
+                <h4>Send Us An Inquiry</h4>
+                <form class="inquiry-form" action="https://formspree.io/f/xvzjjqew" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email Address" required>
+                    <textarea name="message" placeholder="Message / Project Inquiry" rows="4" required></textarea>
+                    <button type="submit" class="inquiry-submit-btn">Submit Inquiry</button>
+                </form>
+                <div class="map-preview-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.656819448831!2d120.9701!3d14.4121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397d268a7356c3f%3A0x6b2e3e600570b72f!2sMolino%20II%2C%20Bacoor%2C%20Cavite!5e0!3m2!1sen!2sph!4v1710000000000!5m2!1sen!2sph" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Confianza Construction Design & Build. All Rights Reserved.</p>
+    </div>
+</section>
+
+<!-- JavaScript -->
+<script>
+    const slides = [
+        { image: "NAMNAMA.jpg", title: "Namnama Residence", desc: "." },
+        { image: "CABANERO.jpg", title: "Cabanero House", desc: "" },
+        { image: "AMARA 1.jpg", title: "Amara Hallway & Porch", desc: "" },
+        { image: "ATRIUM.jpg", title: "Atrium Landscape & Decor", desc: "" }
+    ];
+
+    let currentSlideIndex = 0;
+    const heroElement = document.getElementById('home');
+    const heroTitle = document.getElementById('hero-title');
+    const heroDesc = document.getElementById('hero-desc');
+    const dots = document.querySelectorAll('.slide-dots .dot');
+
+    function updateSlide(index) {
+        if (index < 0) currentSlideIndex = slides.length - 1;
+        else if (index >= slides.length) currentSlideIndex = 0;
+        else currentSlideIndex = index;
+
+        heroElement.style.backgroundImage = `url('${slides[currentSlideIndex].image}')`;
+        heroTitle.textContent = slides[currentSlideIndex].title;
+        heroDesc.textContent = slides[currentSlideIndex].desc;
+
+        dots.forEach((dot, idx) => {
+            if (idx === currentSlideIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+
+    function changeSlide(n) { updateSlide(currentSlideIndex + n); }
+    function currentSlide(n) { updateSlide(n); }
+    setInterval(() => { changeSlide(1); }, 5000);
+
+    /* MGA DATOS NG PROYEKTO (Finished & Proposed) */
+    const projectsData = {
+        tResidence: {
+            title: "T Residence",
+            images: ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png"]
+        },
+        sResidence: {
+            title: "S RESIDENCE",
+            images: ["SEIJAKU.jpg", "SEIJAKU 1.jpg", "SEIJAKU 2.jpg", "SEIJAKU 3.jpg", "SEIJAKU 4.jpg", "SEIJAKU 5.jpg"]
+        },
+        saoang: {
+            title: "SAOANG",
+            images: ["SAOANG.jpg", "SAOANG 1.jpg", "SAOANG 2.jpg", "SAOANG 3.jpg", "SAOANG 4.jpg"]
+        },
+        rosario: {
+            title: "ROSARIO RESIDENCE",
+            images: ["ROSARIO.jpg", "ROSARIO 2.jpg", "ROSARIO 3.jpg", "ROSARIO 4.jpg", "ROSARIO 5.jpg", "ROSARIO 6.jpg", "ROSARIO 7.jpg", "ROSARIO 9.jpg", "ROSARIO 10.jpg"]
+        },
+        rResidence: {
+            title: "R RESIDENCE",
+            images: ["R RESIDENCE.jpg", "R RESIDENCE 1.jpg", "R RESIDENCE 2.jpg", "R RESIDENCE 3.jpg", "R RESIDENCE 4.jpg", "R RESIDENCE 5.jpg", "R RESIDENCE 6.jpg", "R RESIDENCE 7.jpg"]
+        },
+        nResidence: {
+            title: "N RESIDENCE",
+            images: ["N RESIDENCE.jpg", "N RESIDENCE 1.jpg", "N RESIDENCE 2.jpg", "N RESIDENCE 3.jpg", "N RESIDENCE 4.jpg", "N RESIDENCE 5.jpg", "N RESIDENCE 6.jpg", "N RESIDENCE 7.jpg", "N RESIDENCE 8.jpg", "N RESIDENCE 9.jpg", "N RESIDENCE 10.jpg", "N RESIDENCE 12.jpg", "N RESIDENCE 13.jpg", "N RESIDENCE 14.jpg", "N RESIDENCE 15.jpg"]
+        },
+        pResidence: {
+            title: "P RESIDENCE",
+            images: ["PASONANCA.jpg", "PASONANCA 1.jpg", "PASONANCA 2.jpg", "PASONANCA 3.jpg", "PASONANCA 4.jpg", "PASONANCA 5.jpg", "PASONANCA 6.jpg", "PASONANCA 7.jpg", "PASONANCA 8.jpg"]
+        },
+        mResidence: {
+            title: "M RESIDENCE",
+            images: ["M RESIDENCE.jpg", "M RESIDENCE 1.jpg", "M RESIDENCE 2.jpg", "M RESIDENCE 3.jpg", "M RESIDENCE 4.jpg", "M RESIDENCE 5.jpg", "M RESIDENCE 6.jpg", "M RESIDENCE 7.jpg", "M RESIDENCE 8.jpg", "M RESIDENCE 9.jpg", "M RESIDENCE 10.jpg", "M RESIDENCE 11.jpg", "M RESIDENCE 12.jpg"]
+        },
+        aResidence: {
+            title: "A RESIDENCE",
+            images: ["A RESIDENCE.jpeg", "A RESIDENCE 1.jpeg", "A RESIDENCE 2.jpeg", "A RESIDENCE 3.jpeg", "A RESIDENCE 4.jpeg", "A RESIDENCE 5.jpeg", "A RESIDENCE 6.jpeg", "A RESIDENCE 7.jpeg", "A RESIDENCE 8.jpeg", "A RESIDENCE 9.jpeg", "A RESIDENCE 10.jpeg", "A RESIDENCE 11.jpeg", "A RESIDENCE 12.jpeg"]
+        },
+        bResidence: {
+            title: "B RESIDENCE",
+            images: ["B RESIDENCE.jpg", "B 1.jpg", "B 2.jpg", "B 3.jpg", "B 4.jpg", "B 5.jpg", "B 6.jpg", "B 7.jpg", "B 8.jpg", "B 9.jpg", "B 10.jpg", "B 11.jpg", "B 12.jpg", "B 13.jpg", "B 14.jpg", "B 15.jpg"]
+        },
+        dResidence: {
+            title: "D RESIDENCE",
+            images: ["D RESIDENCE.jpg", "D 1.jpg", "D 2.jpg", "D 3.jpg", "D 4.jpg", "D 5.jpg"]
+        },
+        eResidence: {
+            title: "E RESIDENCE",
+            images: ["E RESIDENCE.jpg", "E 1.jpg", "E 2.jpg", "E 3.jpg", "E 4.jpg", "E 5.jpg", "E 6.jpg", "E 7.jpg", "E 8.jpg", "E 9.jpg", "E 10.jpg", "E 11.jpg", "E 12.jpg",]
+        },
+        fResidence: {
+            title: "F RESIDENCE",
+            images: ["F RESIDENCE.jpeg", "F 1.jpeg", "F 2.jpg", "F 3.jpg", "F 4.jpg", "F 5.jpg", "F 6.jpg", "F 7.jpg", "F 8.jpg", "F 9.jpg", "F 10.jpg"]
+        },
+        mResidence2: {
+            title: "M RESIDENCE II",
+            images: ["MRESIDENCE.jpeg", "M1.jpg", "M2.jpg","M3.jpg","M4.jpg", "M5.jpg",]
+        },
+        tastesOfGreens: {
+            title: "TASTES OF THE GREENS",
+            images: ["TT GREEN.jpg", "TT 1.jpg", "TT 2.jpg", "TT 3.jpg", "TT 4.jpg", "TT 5.jpg", "TT 6.jpg"]
+        },
+        /* PROPOSED PROJECTS DATA */
+        amaraProp: {
+            title: "AMARA RESIDENCE",
+            images: ["AMARA 1.jpg", "ATRIUM.jpg", "AMARA 2.jpg", "AMARA 3.jpg", "AMARA 4.jpg", "AMARA 5.jpg", "AMARA 6.jpg", "AMARA 7.jpg", "AMARA 8.jpg", "AMARA 9.jpg", "AMARA 10.jpg", "AMARA 11.jpg"]
+        },
+        namnamaProp: {
+            title: "NAMNAMA RESIDENCE",
+            images: ["NAMNAMA.jpg","NAMNAMA 2.jpg","NAMNAMA 3.jpg"]
+        },
+        cabaneroProp: {
+            title: "CABANERO RESIDENCE",
+            images: ["C1.jpg","C2.jpg","C3.jpg","C4.jpg","C5.jpg","C6.jpg",]
+        },
+        cResidenceProp: {
+            title: "C RESIDENCE",
+            images: [ "C RENOVATION 001.jpg", "C RENOVATION 002.jpg", "C RENOVATION 003.jpg", "C RENOVATION 004.jpg"]
+        },
+        kansoProp: {
+            title: "KANSO RESIDENCE",
+            images: ["KANSO 101.jpg", "KANSO 102.jpg","KANSO 103.jpg","KANSO 104.jpg","KANSO 105.jpg","KANSO 106.jpg",]
+        },
+        caProp: {
+            title: "CA RESIDENCE",
+            images: ["CA 1.jpg","CA2.jpg","CA3.jpg","CA4.jpg","CA5.jpg", "CA6.jpg", "CA7.jpg","CA8.jpg","CA9.jpg","CA10.jpg","CA11.jpg","CA12.jpg","CA13.jpg","CA14.jpg","CA15.jpg","CA16.jpg","CA17.jpg","CA18.jpg","CA19.jpg","CA20.jpg","CA21.jpg","CA22.jpg",]
+        },
+        mortegaProp: {
+            title: "MORTEGA RESIDENCE",
+            images: ["MORTEGA 700.jpg","MORTEGA 701.jpg","MORTEGA 702.jpg", "MORTEGA 703.jpg", "MORTEGA 704.jpg","MORTEGA 705.jpg",]
+        },
+        grapilonProp: {
+            title: "GRAPILON RESIDENCE",
+            images: ["GRAPILON 200.jpg", "GRAPILON 201.jpg","GRAPILON 202.jpg","GRAPILON 203.jpg","GRAPILON 204.jpg","GRAPILON 205.jpg","GRAPILON 206.jpg", "GRAPILON 207.jpg",]
+        }
+    };
+
+    function openProjectDetail(projectKey) {
+        const data = projectsData[projectKey];
+        if(!data) return;
+
+        document.getElementById('detailTitle').textContent = data.title + " Gallery";
+        
+        const gridContainer = document.getElementById('detailGridContainer');
+        gridContainer.innerHTML = '';
+        data.images.forEach(imgSrc => {
+            const item = document.createElement('div');
+            item.className = 'modal-gallery-item';
+            item.style.backgroundImage = `url('${imgSrc}')`;
+            item.onclick = function() { openLightbox(imgSrc); };
+            gridContainer.appendChild(item);
+        });
+
+        document.getElementById('dynamicProjectDetailView').style.display = 'flex';
+        document.getElementById('dynamicProjectDetailView').style.alignItems = 'center';
+        document.getElementById('dynamicProjectDetailView').style.justifyContent = 'center';
+    }
+
+    function closeDynamicDetail() {
+        document.getElementById('dynamicProjectDetailView').style.display = 'none';
+    }
+
+    function openModal(modalId) { document.getElementById(modalId).style.display = 'block'; }
+    function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
+
+    function openLightbox(imageSrc) {
+        const lightbox = document.getElementById('lightboxModal');
+        const lightboxImg = document.getElementById('lightboxImage');
+        lightbox.style.display = 'flex';
+        lightboxImg.src = imageSrc;
+    }
+
+    function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
+
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal') || event.target.classList.contains('project-detail-view')) {
+            event.target.style.display = 'none';
+        }
+        if (event.target.classList.contains('lightbox-modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+
+    function copyEmail() {
+        navigator.clipboard.writeText("hrconfianzaconstruction@gmail.com");
+        alert("Email copied to clipboard!");
+    }
+
+    function switchCategory(category, event) {
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        const infoContainer = document.getElementById('category-info');
+        const gridContainer = document.getElementById('project-grid');
+
+        if (category === 'finished') {
+            infoContainer.innerHTML = `
+                <h2>Finished Projects.</h2>
+                <p>Explore our successfully completed construction and design portfolios, built with precision, durability, and top-tier craftsmanship.</p>
+            `;
+            gridContainer.innerHTML = `
+                <div class="project-card-item" onclick="openProjectDetail('tResidence')"><div class="project-image-box" style="background-image: url('1.png');"></div><div class="project-details"><h3>T RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('sResidence')"><div class="project-image-box" style="background-image: url('SEIJAKU.jpg');"></div><div class="project-details"><h3>S RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('saoang')"><div class="project-image-box" style="background-image: url('SAOANG.jpg');"></div><div class="project-details"><h3>SAOANG</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('rosario')"><div class="project-image-box" style="background-image: url('ROSARIO.jpg');"></div><div class="project-details"><h3>ROSARIO RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('rResidence')"><div class="project-image-box" style="background-image: url('R\\ RESIDENCE.jpg');"></div><div class="project-details"><h3>R RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('nResidence')"><div class="project-image-box" style="background-image: url('N\\ RESIDENCE.jpg');"></div><div class="project-details"><h3>N RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('pResidence')"><div class="project-image-box" style="background-image: url('PASONANCA.jpg');"></div><div class="project-details"><h3>P RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('mResidence')"><div class="project-image-box" style="background-image: url('M\\ RESIDENCE.jpg');"></div><div class="project-details"><h3>M RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('aResidence')"><div class="project-image-box" style="background-image: url('A\\ RESIDENCE.jpeg');"></div><div class="project-details"><h3>A RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('bResidence')"><div class="project-image-box" style="background-image: url('B\\ RESIDENCE.jpg');"></div><div class="project-details"><h3>B RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('dResidence')"><div class="project-image-box" style="background-image: url('D\\ RESIDENCE.jpg');"></div><div class="project-details"><h3>D RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('eResidence')"><div class="project-image-box" style="background-image: url('E\\ RESIDENCE.jpg');"></div><div class="project-details"><h3>E RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('fResidence')"><div class="project-image-box" style="background-image: url('F\\ RESIDENCE.jpeg');"></div><div class="project-details"><h3>F RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('mResidence2')"><div class="project-image-box" style="background-image: url('MRESIDENCE.jpeg');"></div><div class="project-details"><h3>M RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('tastesOfGreens')"><div class="project-image-box" style="background-image: url('TT\\ GREEN.jpg');"></div><div class="project-details"><h3>TASTES OF THE GREENS</h3><p></p></div></div>
+            `;
+        } else if (category === 'proposed') {
+            infoContainer.innerHTML = `
+                <h2>Proposed Projects.</h2>
+                <p>Browse through our upcoming designs and conceptual architectural blueprints tailored for future developments.</p>
+            `;
+            gridContainer.innerHTML = `
+                <div class="project-card-item" onclick="openProjectDetail('amaraProp')"><div class="project-image-box" style="background-image: url('AMARA 1.jpg');"></div><div class="project-details"><h3>AMARA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('namnamaProp')"><div class="project-image-box" style="background-image: url('NAMNAMA.jpg');"></div><div class="project-details"><h3>NAMNAMA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('cabaneroProp')"><div class="project-image-box" style="background-image: url('CABANERO.jpg');"></div><div class="project-details"><h3>CABANERO RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('cResidenceProp')"><div class="project-image-box" style="background-image: url('C RENOVATION 001.jpg');"></div><div class="project-details"><h3>C RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('kansoProp')"><div class="project-image-box" style="background-image: url('KANSO 101.jpg');"></div><div class="project-details"><h3>KANSO RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('caProp')"><div class="project-image-box" style="background-image: url('CA 1.jpg');"></div><div class="project-details"><h3>CA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('mortegaProp')"><div class="project-image-box" style="background-image: url('MORTEGA 700.jpg');"></div><div class="project-details"><h3>MORTEGA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('grapilonProp')"><div class="project-image-box" style="background-image: url('GRAPILON 200.jpg');"></div><div class="project-details"><h3>GRAPILON RESIDENCE</h3><p></p></div></div>
+            `;
+        } else if (category === 'interior') {
+            infoContainer.innerHTML = `
+                <h2>Interior Fits Out & Modular.</h2>
+                <p>Discover our custom interior designs, elegant space planning, and premium modular cabinetry tailored for modern living and workspaces.</p>
+            `;
+            gridContainer.innerHTML = `
+                <div class="project-card-item" onclick="openProjectDetail('rosario')"><div class="project-image-box" style="background-image: url('ROSARIO 2.jpg');"></div><div class="project-details"><h3>Kitchen & Island Fit Out</h3><p>Interior/Kitchen</p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('saoang')"><div class="project-image-box" style="background-image: url('SAOANG 1.jpg');"></div><div class="project-details"><h3>CustomModular Entries</h3><p>Modular System</p></div></div>
+            `;
+        }
+    }
+</script>
+
+</body>
+</html>
