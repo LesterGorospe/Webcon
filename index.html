@@ -174,6 +174,54 @@
             margin-bottom: 5px;
         }
 
+        /* ABOUT US SECTION */
+        .about-section {
+            background: #f9f9f9;
+            padding: 80px 5%;
+            text-align: center;
+        }
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .about-section h2 {
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #111;
+            letter-spacing: 1px;
+        }
+        .about-intro {
+            font-size: 1.05rem;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        .about-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 5px solid #e67e22;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .about-card h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .about-card p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
         .container { padding: 80px 5%; }
         .services { display: flex; gap: 20px; flex-wrap: wrap; }
         .service-card { background: #fff; padding: 20px; flex: 1; min-width: 250px; border-radius: 8px; border-top: 5px solid #e67e22; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
@@ -406,8 +454,9 @@
     <div class="logo">CONFIANZA CONSTRUCTION DESIGN & BUILD</div>
     <ul>
         <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#portfolio">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
     </ul>
 </nav>
@@ -434,25 +483,43 @@
     <div class="featured-showcase-container">
         <div class="featured-project-box">
             <div class="featured-grid-images">
-                <div class="featured-main-img" style="background-image: url('2.png');"></div>
-                <div class="featured-main-img" style="background-image: url('9.png');"></div>
+                <div class="featured-main-img" style="background-image: url('pictures/2.png');"></div>
+                <div class="featured-main-img" style="background-image: url('pictures/9.png');"></div>
             </div>
             <div class="featured-info-card"><h3>T RESIDENCE</h3></div>
             <div class="featured-sub-grid" style="margin-top: 20px;">
-                <div class="featured-sub-img" style="background-image: url('5.png');"></div>
-                <div class="featured-sub-img" style="background-image: url('2.png');"></div>
-                <div class="featured-sub-img" style="background-image: url('3.png');"></div>
+                <div class="featured-sub-img" style="background-image: url('pictures/5.png');"></div>
+                <div class="featured-sub-img" style="background-image: url('pictures/2.png');"></div>
+                <div class="featured-sub-img" style="background-image: url('pictures/3.png');"></div>
             </div>
         </div>
         <div class="featured-project-box" style="margin-top: 40px;">
             <div style="padding: 15px 15px 0 15px;">
-                <div class="featured-main-img" style="height: 380px; background-image: url('SEIJAKU.jpg');"></div>
+                <div class="featured-main-img" style="height: 380px; background-image: url('pictures/SEIJAKU.jpg');"></div>
             </div>
             <div class="featured-info-card"><h3>S RESIDENCE</h3></div>
             <div class="featured-sub-grid" style="margin-top: 20px;">
-                <div class="featured-sub-img" style="background-image: url('SEIJAKU 1.jpg');"></div>
-                <div class="featured-sub-img" style="background-image: url('SEIJAKU 2.jpg');"></div>
-                <div class="featured-sub-img" style="background-image: url('SEIJAKU 3.jpg');"></div>
+                <div class="featured-sub-img" style="background-image: url('pictures/SEIJAKU 1.jpg');"></div>
+                <div class="featured-sub-img" style="background-image: url('pictures/SEIJAKU 2.jpg');"></div>
+                <div class="featured-sub-img" style="background-image: url('pictures/SEIJAKU 3.jpg');"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT US SECTION -->
+<section class="about-section" id="about">
+    <div class="about-container">
+        <h2>About Us</h2>
+        <p class="about-intro">Get to know more about Confianza Construction Design & Build—where engineering dreams are turned into reality with integrity, luxury aesthetics, and structural soundness.</p>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Our Mission</h3>
+                <p>TO BUILD DREAM HOUSES IN THHE MOST ECONOMICAL WAY BUT 100% SATISFACTION GUARANTEED.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Vision</h3>
+                <p>TO BUILD A GROUP OF PROFESSIONALS & SKILLED WORKERS THAT WILL MEET UP YOUR BEST EXPERIENCE IN BUILDING YOUR DREAM HOUSE & PROVIDE THE MOST EXCELLENT QUALITY OF WORK.</p>
             </div>
         </div>
     </div>
@@ -476,7 +543,7 @@
 
 <!-- PROJECTS SECTION -->
 <section class="projects-section-wrapper" id="portfolio">
-    <h1 class="projects-header-title">PROJECTS.</h1>
+    <h1 class="projects-header-title">Projects.</h1>
 
     <div class="filter-section">
         <button class="filter-btn active" onclick="switchCategory('finished', event)">Finished Project</button>
@@ -491,63 +558,63 @@
 
     <div class="project-grid-enhanced" id="project-grid">
         <div class="project-card-item" onclick="openProjectDetail('tResidence')">
-            <div class="project-image-box" style="background-image: url('1.png');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/1.png');"></div>
             <div class="project-details"><h3>T Residence</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('sResidence')">
-            <div class="project-image-box" style="background-image: url('SEIJAKU.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/SEIJAKU.jpg');"></div>
             <div class="project-details"><h3>S RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('saoang')">
-            <div class="project-image-box" style="background-image: url('SAOANG.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/SAOANG.jpg');"></div>
             <div class="project-details"><h3>SAOANG</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('rosario')">
-            <div class="project-image-box" style="background-image: url('ROSARIO.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/ROSARIO.jpg');"></div>
             <div class="project-details"><h3>ROSARIO RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('rResidence')">
-            <div class="project-image-box" style="background-image: url('R\ RESIDENCE.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/R\ RESIDENCE.jpg');"></div>
             <div class="project-details"><h3>R RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('nResidence')">
-            <div class="project-image-box" style="background-image: url('N\ RESIDENCE.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/N\ RESIDENCE.jpg');"></div>
             <div class="project-details"><h3>N RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('pResidence')">
-            <div class="project-image-box" style="background-image: url('PASONANCA.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/PASONANCA.jpg');"></div>
             <div class="project-details"><h3>P RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('mResidence')">
-            <div class="project-image-box" style="background-image: url('M\ RESIDENCE.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/M\ RESIDENCE.jpg');"></div>
             <div class="project-details"><h3>M RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('aResidence')">
-            <div class="project-image-box" style="background-image: url('A\ RESIDENCE.jpeg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/A\ RESIDENCE.jpeg');"></div>
             <div class="project-details"><h3>A RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('bResidence')">
-             <div class="project-image-box" style="background-image: url('B\ RESIDENCE.jpg');"></div>
+             <div class="project-image-box" style="background-image: url('pictures/B\ RESIDENCE.jpg');"></div>
             <div class="project-details"><h3>B RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('dResidence')">
-           <div class="project-image-box" style="background-image: url('D\ RESIDENCE.jpg');"></div>
+           <div class="project-image-box" style="background-image: url('pictures/D\ RESIDENCE.jpg');"></div>
             <div class="project-details"><h3>D RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('eResidence')">
-            <div class="project-image-box" style="background-image: url('E\ RESIDENCE.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/E\ RESIDENCE.jpg');"></div>
             <div class="project-details"><h3>E RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('fResidence')">
-            <div class="project-image-box" style="background-image: url('F\ RESIDENCE.jpeg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/F\ RESIDENCE.jpeg');"></div>
             <div class="project-details"><h3>F RESIDENCE</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('mResidence2')">
-            <div class="project-image-box" style="background-image: url('MRESIDENCE.jpeg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/MRESIDENCE.jpeg');"></div>
             <div class="project-details"><h3>M RESIDENCE II</h3><p></p></div>
         </div>
         <div class="project-card-item" onclick="openProjectDetail('tastesOfGreens')">
-            <div class="project-image-box" style="background-image: url('TT\ GREEN.jpg');"></div>
+            <div class="project-image-box" style="background-image: url('pictures/TT\ GREEN.jpg');"></div>
             <div class="project-details"><h3>TASTES OF THE GREENS</h3><p></p></div>
         </div>
     </div>
@@ -655,10 +722,10 @@
 <!-- JavaScript -->
 <script>
     const slides = [
-        { image: "NAMNAMA.jpg", title: "Namnama Residence", desc: "." },
-        { image: "CABANERO.jpg", title: "Cabanero House", desc: "" },
-        { image: "AMARA 1.jpg", title: "Amara Hallway & Porch", desc: "" },
-        { image: "ATRIUM.jpg", title: "Atrium Landscape & Decor", desc: "" }
+        { image: "pictures/NAMNAMA.jpg", title: "Namnama Residence", desc: "." },
+        { image: "pictures/CABANERO.jpg", title: "Cabanero House", desc: "" },
+        { image: "pictures/AMARA 1.jpg", title: "Amara Hallway & Porch", desc: "" },
+        { image: "pictures/ATRIUM.jpg", title: "Atrium Landscape & Decor", desc: "" }
     ];
 
     let currentSlideIndex = 0;
@@ -690,96 +757,96 @@
     const projectsData = {
         tResidence: {
             title: "T Residence",
-            images: ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "9.png", "10.png", "11.png", "12.png", "13.png", "14.png"]
+            images: ["pictures/1.png", "pictures/2.png", "pictures/3.png", "pictures/4.png", "pictures/5.png", "pictures/6.png", "pictures/7.png", "pictures/8.png", "pictures/9.png", "pictures/10.png", "pictures/11.png", "pictures/12.png", "pictures/13.png", "pictures/14.png"]
         },
         sResidence: {
             title: "S RESIDENCE",
-            images: ["SEIJAKU.jpg", "SEIJAKU 1.jpg", "SEIJAKU 2.jpg", "SEIJAKU 3.jpg", "SEIJAKU 4.jpg", "SEIJAKU 5.jpg"]
+            images: ["pictures/SEIJAKU.jpg", "pictures/SEIJAKU 1.jpg", "pictures/SEIJAKU 2.jpg", "pictures/SEIJAKU 3.jpg", "pictures/SEIJAKU 4.jpg", "pictures/SEIJAKU 5.jpg"]
         },
         saoang: {
             title: "SAOANG",
-            images: ["SAOANG.jpg", "SAOANG 1.jpg", "SAOANG 2.jpg", "SAOANG 3.jpg", "SAOANG 4.jpg"]
+            images: ["pictures/SAOANG.jpg", "pictures/SAOANG 1.jpg", "pictures/SAOANG 2.jpg", "pictures/SAOANG 3.jpg", "pictures/SAOANG 4.jpg"]
         },
         rosario: {
             title: "ROSARIO RESIDENCE",
-            images: ["ROSARIO.jpg", "ROSARIO 2.jpg", "ROSARIO 3.jpg", "ROSARIO 4.jpg", "ROSARIO 5.jpg", "ROSARIO 6.jpg", "ROSARIO 7.jpg", "ROSARIO 9.jpg", "ROSARIO 10.jpg"]
+            images: ["pictures/ROSARIO.jpg", "pictures/ROSARIO 2.jpg", "pictures/ROSARIO 3.jpg", "pictures/ROSARIO 4.jpg", "pictures/ROSARIO 5.jpg", "pictures/ROSARIO 6.jpg", "pictures/ROSARIO 7.jpg", "pictures/ROSARIO 9.jpg", "pictures/ROSARIO 10.jpg"]
         },
         rResidence: {
             title: "R RESIDENCE",
-            images: ["R RESIDENCE.jpg", "R RESIDENCE 1.jpg", "R RESIDENCE 2.jpg", "R RESIDENCE 3.jpg", "R RESIDENCE 4.jpg", "R RESIDENCE 5.jpg", "R RESIDENCE 6.jpg", "R RESIDENCE 7.jpg"]
+            images: ["pictures/R RESIDENCE.jpg", "pictures/R RESIDENCE 1.jpg", "pictures/R RESIDENCE 2.jpg", "pictures/R RESIDENCE 3.jpg", "pictures/R RESIDENCE 4.jpg", "pictures/R RESIDENCE 5.jpg", "pictures/R RESIDENCE 6.jpg", "pictures/R RESIDENCE 7.jpg"]
         },
         nResidence: {
             title: "N RESIDENCE",
-            images: ["N RESIDENCE.jpg", "N RESIDENCE 1.jpg", "N RESIDENCE 2.jpg", "N RESIDENCE 3.jpg", "N RESIDENCE 4.jpg", "N RESIDENCE 5.jpg", "N RESIDENCE 6.jpg", "N RESIDENCE 7.jpg", "N RESIDENCE 8.jpg", "N RESIDENCE 9.jpg", "N RESIDENCE 10.jpg", "N RESIDENCE 12.jpg", "N RESIDENCE 13.jpg", "N RESIDENCE 14.jpg", "N RESIDENCE 15.jpg"]
+            images: ["pictures/N RESIDENCE.jpg", "pictures/N RESIDENCE 1.jpg", "pictures/N RESIDENCE 2.jpg", "pictures/N RESIDENCE 3.jpg", "pictures/N RESIDENCE 4.jpg", "pictures/N RESIDENCE 5.jpg", "pictures/N RESIDENCE 6.jpg", "pictures/N RESIDENCE 7.jpg", "pictures/N RESIDENCE 8.jpg", "pictures/N RESIDENCE 9.jpg", "pictures/N RESIDENCE 10.jpg", "pictures/N RESIDENCE 12.jpg", "pictures/N RESIDENCE 13.jpg", "pictures/N RESIDENCE 14.jpg", "pictures/N RESIDENCE 15.jpg"]
         },
         pResidence: {
             title: "P RESIDENCE",
-            images: ["PASONANCA.jpg", "PASONANCA 1.jpg", "PASONANCA 2.jpg", "PASONANCA 3.jpg", "PASONANCA 4.jpg", "PASONANCA 5.jpg", "PASONANCA 6.jpg", "PASONANCA 7.jpg", "PASONANCA 8.jpg"]
+            images: ["pictures/PASONANCA.jpg", "pictures/PASONANCA 1.jpg", "pictures/PASONANCA 2.jpg", "pictures/PASONANCA 3.jpg", "pictures/PASONANCA 4.jpg", "pictures/PASONANCA 5.jpg", "pictures/PASONANCA 6.jpg", "pictures/PASONANCA 7.jpg", "pictures/PASONANCA 8.jpg"]
         },
         mResidence: {
             title: "M RESIDENCE",
-            images: ["M RESIDENCE.jpg", "M RESIDENCE 1.jpg", "M RESIDENCE 2.jpg", "M RESIDENCE 3.jpg", "M RESIDENCE 4.jpg", "M RESIDENCE 5.jpg", "M RESIDENCE 6.jpg", "M RESIDENCE 7.jpg", "M RESIDENCE 8.jpg", "M RESIDENCE 9.jpg", "M RESIDENCE 10.jpg", "M RESIDENCE 11.jpg", "M RESIDENCE 12.jpg"]
+            images: ["pictures/M RESIDENCE.jpg", "pictures/M RESIDENCE 1.jpg", "pictures/M RESIDENCE 2.jpg", "pictures/M RESIDENCE 3.jpg", "pictures/M RESIDENCE 4.jpg", "pictures/M RESIDENCE 5.jpg", "pictures/M RESIDENCE 6.jpg", "pictures/M RESIDENCE 7.jpg", "pictures/M RESIDENCE 8.jpg", "pictures/M RESIDENCE 9.jpg", "pictures/M RESIDENCE 10.jpg", "pictures/M RESIDENCE 11.jpg", "pictures/M RESIDENCE 12.jpg"]
         },
         aResidence: {
             title: "A RESIDENCE",
-            images: ["A RESIDENCE.jpeg", "A RESIDENCE 1.jpeg", "A RESIDENCE 2.jpeg", "A RESIDENCE 3.jpeg", "A RESIDENCE 4.jpeg", "A RESIDENCE 5.jpeg", "A RESIDENCE 6.jpeg", "A RESIDENCE 7.jpeg", "A RESIDENCE 8.jpeg", "A RESIDENCE 9.jpeg", "A RESIDENCE 10.jpeg", "A RESIDENCE 11.jpeg", "A RESIDENCE 12.jpeg"]
+            images: ["pictures/A RESIDENCE.jpeg", "pictures/A RESIDENCE 1.jpeg", "pictures/A RESIDENCE 2.jpeg", "pictures/A RESIDENCE 3.jpeg", "pictures/A RESIDENCE 4.jpeg", "pictures/A RESIDENCE 5.jpeg", "pictures/A RESIDENCE 6.jpeg", "pictures/A RESIDENCE 7.jpeg", "pictures/A RESIDENCE 8.jpeg", "pictures/A RESIDENCE 9.jpeg", "pictures/A RESIDENCE 10.jpeg", "pictures/A RESIDENCE 11.jpeg", "pictures/A RESIDENCE 12.jpeg"]
         },
         bResidence: {
             title: "B RESIDENCE",
-            images: ["B RESIDENCE.jpg", "B 1.jpg", "B 2.jpg", "B 3.jpg", "B 4.jpg", "B 5.jpg", "B 6.jpg", "B 7.jpg", "B 8.jpg", "B 9.jpg", "B 10.jpg", "B 11.jpg", "B 12.jpg", "B 13.jpg", "B 14.jpg", "B 15.jpg"]
+            images: ["pictures/B RESIDENCE.jpg", "pictures/B 1.jpg", "pictures/B 2.jpg", "pictures/B 3.jpg", "pictures/B 4.jpg", "pictures/B 5.jpg", "pictures/B 6.jpg", "pictures/B 7.jpg", "pictures/B 8.jpg", "pictures/B 9.jpg", "pictures/B 10.jpg", "pictures/B 11.jpg", "pictures/B 12.jpg", "pictures/B 13.jpg", "pictures/B 14.jpg", "pictures/B 15.jpg"]
         },
         dResidence: {
             title: "D RESIDENCE",
-            images: ["D RESIDENCE.jpg", "D 1.jpg", "D 2.jpg", "D 3.jpg", "D 4.jpg", "D 5.jpg"]
+            images: ["pictures/D RESIDENCE.jpg", "pictures/D 1.jpg", "pictures/D 2.jpg", "pictures/D 3.jpg", "pictures/D 4.jpg", "pictures/D 5.jpg"]
         },
         eResidence: {
             title: "E RESIDENCE",
-            images: ["E RESIDENCE.jpg", "E 1.jpg", "E 2.jpg", "E 3.jpg", "E 4.jpg", "E 5.jpg", "E 6.jpg", "E 7.jpg", "E 8.jpg", "E 9.jpg", "E 10.jpg", "E 11.jpg", "E 12.jpg",]
+            images: ["pictures/E RESIDENCE.jpg", "pictures/E 1.jpg", "pictures/E 2.jpg", "pictures/E 3.jpg", "pictures/E 4.jpg", "pictures/E 5.jpg", "pictures/E 6.jpg", "pictures/E 7.jpg", "pictures/E 8.jpg", "pictures/E 9.jpg", "pictures/E 10.jpg", "pictures/E 11.jpg", "pictures/E 12.jpg"]
         },
         fResidence: {
             title: "F RESIDENCE",
-            images: ["F RESIDENCE.jpeg", "F 1.jpeg", "F 2.jpg", "F 3.jpg", "F 4.jpg", "F 5.jpg", "F 6.jpg", "F 7.jpg", "F 8.jpg", "F 9.jpg", "F 10.jpg"]
+            images: ["pictures/F RESIDENCE.jpeg", "pictures/F 1.jpeg", "pictures/F 2.jpg", "pictures/F 3.jpg", "pictures/F 4.jpg", "pictures/F 5.jpg", "pictures/F 6.jpg", "pictures/F 7.jpg", "pictures/F 8.jpg", "pictures/F 9.jpg", "pictures/F 10.jpg"]
         },
         mResidence2: {
             title: "M RESIDENCE II",
-            images: ["MRESIDENCE.jpeg", "M1.jpg", "M2.jpg","M3.jpg","M4.jpg", "M5.jpg",]
+            images: ["pictures/MRESIDENCE.jpeg", "pictures/M1.jpg", "pictures/M2.jpg", "pictures/M3.jpg", "pictures/M4.jpg", "pictures/M5.jpg"]
         },
         tastesOfGreens: {
             title: "TASTES OF THE GREENS",
-            images: ["TT GREEN.jpg", "TT 1.jpg", "TT 2.jpg", "TT 3.jpg", "TT 4.jpg", "TT 5.jpg", "TT 6.jpg"]
+            images: ["pictures/TT GREEN.jpg", "pictures/TT 1.jpg", "pictures/TT 2.jpg", "pictures/TT 3.jpg", "pictures/TT 4.jpg", "pictures/TT 5.jpg", "pictures/TT 6.jpg"]
         },
         /* PROPOSED PROJECTS DATA */
         amaraProp: {
             title: "AMARA RESIDENCE",
-            images: ["AMARA 1.jpg", "ATRIUM.jpg", "AMARA 2.jpg", "AMARA 3.jpg", "AMARA 4.jpg", "AMARA 5.jpg", "AMARA 6.jpg", "AMARA 7.jpg", "AMARA 8.jpg", "AMARA 9.jpg", "AMARA 10.jpg", "AMARA 11.jpg"]
+            images: ["pictures/AMARA 1.jpg", "pictures/ATRIUM.jpg", "pictures/AMARA 2.jpg", "pictures/AMARA 3.jpg", "pictures/AMARA 4.jpg", "pictures/AMARA 5.jpg", "pictures/AMARA 6.jpg", "pictures/AMARA 7.jpg", "pictures/AMARA 8.jpg", "pictures/AMARA 9.jpg", "pictures/AMARA 10.jpg", "pictures/AMARA 11.jpg"]
         },
         namnamaProp: {
             title: "NAMNAMA RESIDENCE",
-            images: ["NAMNAMA.jpg","NAMNAMA 2.jpg","NAMNAMA 3.jpg"]
+            images: ["pictures/NAMNAMA.jpg", "pictures/NAMNAMA 2.jpg", "pictures/NAMNAMA 3.jpg"]
         },
         cabaneroProp: {
             title: "CABANERO RESIDENCE",
-            images: ["C1.jpg","C2.jpg","C3.jpg","C4.jpg","C5.jpg","C6.jpg",]
+            images: ["pictures/C1.jpg", "pictures/C2.jpg", "pictures/C3.jpg", "pictures/C4.jpg", "pictures/C5.jpg", "pictures/C6.jpg"]
         },
         cResidenceProp: {
             title: "C RESIDENCE",
-            images: [ "C RENOVATION 001.jpg", "C RENOVATION 002.jpg", "C RENOVATION 003.jpg", "C RENOVATION 004.jpg"]
+            images: ["pictures/C RENOVATION 001.jpg", "pictures/C RENOVATION 002.jpg", "pictures/C RENOVATION 003.jpg", "pictures/C RENOVATION 004.jpg"]
         },
         kansoProp: {
-            title: "KANSO RESIDENCE",
-            images: ["KANSO 101.jpg", "KANSO 102.jpg","KANSO 103.jpg","KANSO 104.jpg","KANSO 105.jpg","KANSO 106.jpg",]
+            title: "L RESIDENCE",
+            images: ["pictures/KANSO 101.jpg", "pictures/KANSO 102.jpg", "pictures/KANSO 103.jpg", "pictures/KANSO 104.jpg", "pictures/KANSO 105.jpg", "pictures/KANSO 106.jpg"]
         },
         caProp: {
-            title: "CA RESIDENCE",
-            images: ["CA 1.jpg","CA2.jpg","CA3.jpg","CA4.jpg","CA5.jpg", "CA6.jpg", "CA7.jpg","CA8.jpg","CA9.jpg","CA10.jpg","CA11.jpg","CA12.jpg","CA13.jpg","CA14.jpg","CA15.jpg","CA16.jpg","CA17.jpg","CA18.jpg","CA19.jpg","CA20.jpg","CA21.jpg","CA22.jpg",]
+            title: "ANGELES RESIDENCE",
+            images: ["pictures/CA 1.jpg", "pictures/CA2.jpg", "pictures/CA3.jpg", "pictures/CA4.jpg", "pictures/CA5.jpg", "pictures/CA6.jpg", "pictures/CA7.jpg", "pictures/CA8.jpg", "pictures/CA9.jpg", "pictures/CA10.jpg", "pictures/CA11.jpg", "pictures/CA12.jpg", "pictures/CA13.jpg", "pictures/CA14.jpg", "pictures/CA15.jpg", "pictures/CA16.jpg", "pictures/CA17.jpg", "pictures/CA18.jpg", "pictures/CA19.jpg", "pictures/CA20.jpg", "pictures/CA21.jpg", "pictures/CA22.jpg"]
         },
         mortegaProp: {
-            title: "MORTEGA RESIDENCE",
-            images: ["MORTEGA 700.jpg","MORTEGA 701.jpg","MORTEGA 702.jpg", "MORTEGA 703.jpg", "MORTEGA 704.jpg","MORTEGA 705.jpg",]
+            title: "M RESIDENCE",
+            images: ["pictures/MORTEGA 700.jpg", "pictures/MORTEGA 701.jpg", "pictures/MORTEGA 702.jpg", "pictures/MORTEGA 703.jpg", "pictures/MORTEGA 704.jpg", "pictures/MORTEGA 705.jpg"]
         },
         grapilonProp: {
             title: "GRAPILON RESIDENCE",
-            images: ["GRAPILON 200.jpg", "GRAPILON 201.jpg","GRAPILON 202.jpg","GRAPILON 203.jpg","GRAPILON 204.jpg","GRAPILON 205.jpg","GRAPILON 206.jpg", "GRAPILON 207.jpg",]
+            images: ["pictures/GRAPILON 200.jpg", "pictures/GRAPILON 201.jpg", "pictures/GRAPILON 202.jpg", "pictures/GRAPILON 203.jpg", "pictures/GRAPILON 204.jpg", "pictures/GRAPILON 205.jpg", "pictures/GRAPILON 206.jpg", "pictures/GRAPILON 207.jpg"]
         }
     };
 
@@ -870,14 +937,14 @@
                 <p>Browse through our upcoming designs and conceptual architectural blueprints tailored for future developments.</p>
             `;
             gridContainer.innerHTML = `
-                <div class="project-card-item" onclick="openProjectDetail('amaraProp')"><div class="project-image-box" style="background-image: url('AMARA 1.jpg');"></div><div class="project-details"><h3>AMARA RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('namnamaProp')"><div class="project-image-box" style="background-image: url('NAMNAMA.jpg');"></div><div class="project-details"><h3>NAMNAMA RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('cabaneroProp')"><div class="project-image-box" style="background-image: url('CABANERO.jpg');"></div><div class="project-details"><h3>CABANERO RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('cResidenceProp')"><div class="project-image-box" style="background-image: url('C RENOVATION 001.jpg');"></div><div class="project-details"><h3>C RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('kansoProp')"><div class="project-image-box" style="background-image: url('KANSO 101.jpg');"></div><div class="project-details"><h3>KANSO RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('caProp')"><div class="project-image-box" style="background-image: url('CA 1.jpg');"></div><div class="project-details"><h3>CA RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('mortegaProp')"><div class="project-image-box" style="background-image: url('MORTEGA 700.jpg');"></div><div class="project-details"><h3>MORTEGA RESIDENCE</h3><p></p></div></div>
-                <div class="project-card-item" onclick="openProjectDetail('grapilonProp')"><div class="project-image-box" style="background-image: url('GRAPILON 200.jpg');"></div><div class="project-details"><h3>GRAPILON RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('amaraProp')"><div class="project-image-box" style="background-image: url('pictures/AMARA 1.jpg');"></div><div class="project-details"><h3>AMARA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('namnamaProp')"><div class="project-image-box" style="background-image: url('pictures/NAMNAMA.jpg');"></div><div class="project-details"><h3>NAMNAMA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('cabaneroProp')"><div class="project-image-box" style="background-image: url('pictures/CABANERO.jpg');"></div><div class="project-details"><h3>CABANERO RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('cResidenceProp')"><div class="project-image-box" style="background-image: url('pictures/C RENOVATION 001.jpg');"></div><div class="project-details"><h3>C RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('kansoProp')"><div class="project-image-box" style="background-image: url('pictures/KANSO 101.jpg');"></div><div class="project-details"><h3>L RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('caProp')"><div class="project-image-box" style="background-image: url('pictures/CA 1.jpg');"></div><div class="project-details"><h3>CA RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('mortegaProp')"><div class="project-image-box" style="background-image: url('pictures/MORTEGA 700.jpg');"></div><div class="project-details"><h3>M RESIDENCE</h3><p></p></div></div>
+                <div class="project-card-item" onclick="openProjectDetail('grapilonProp')"><div class="project-image-box" style="background-image: url('pictures/GRAPILON 200.jpg');"></div><div class="project-details"><h3>GRAPILON RESIDENCE</h3><p></p></div></div>
             `;
         } else if (category === 'interior') {
             infoContainer.innerHTML = `
